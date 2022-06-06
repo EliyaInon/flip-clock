@@ -1,0 +1,21 @@
+.light{
+    color: black;
+}
+.dark{
+    background: linear-gradient(to bottom right, #e66465, #9198e5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.section{
+    text-align: center;
+
+    display: inline-block;
+    margin: 0 10px;
+}
+.title{
+    font-size: 18px;
+    padding-bottom: 10px;
+}
+.digits {
+    display: inline-flex;
+}

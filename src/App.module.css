@@ -1,0 +1,39 @@
+:root{
+  --light-color:#f2f1ed;
+  --dark-color:#080829;
+
+  --background-color: none;
+  --oposite-color: none;
+}
+.light{
+  --background-color: var(--light-color);
+  --oposite-color: var(--dark-color);
+}
+.dark{
+  --background-color: var(--dark-color);
+  --oposite-color: var(--light-color);
+}
+.App {
+  /* pointer-events: none; */
+  background-repeat: no-repeat;
+  background-size: 100vw 100vh;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  
+  animation: switch-mode 500ms ease-in forwards;
+}
+@keyframes switch-mode {
+  0%{
+    background-color: var(--oposite-color);
+  }
+  100%{
+    background-color: var(--background-color);
+  }
+}
+feComponentHa
+.Clickable{
+  pointer-events: all !important;
+}

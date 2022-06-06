@@ -1,25 +1,37 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { useContext } from 'react';
+import Styles from './App.module.css';
+import Clock from './Component/Clock';
+import Digit from './Component/Digit';
+import { Mode, NextMode } from './Global/Types';
+
+interface ModeData {
+  mode: Mode
+  setMode: (value: Mode | ((prevValue: Mode) => Mode)) => void;
+}
+
+const DEFAULT_MODE: Mode = "light"
+export const ModeContext = React.createContext<ModeData>({
+  mode: DEFAULT_MODE,
+  setMode: (value: Mode | ((prevValue: Mode) => Mode)) => { }
+})
 
 function App() {
+  const [mode, setMode] = useState<Mode>(DEFAULT_MODE)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ModeContext.Provider value={{ mode: mode, setMode: setMode }}>
+      <div key={mode} className={`${Styles.App} ${mode === "light" ? Styles.light : Styles.dark}`}>
+        {/* <button
+          className={Styles.Clickable}
+          onClick={e => { setMode(NextMode(mode)); }}>
+          {mode === "light" ? "Dark mode" : "Light mode"}
+        </button> */}
+        <Clock />
+      </div>
+    </ModeContext.Provider>
   );
 }
 

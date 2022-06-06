@@ -1,0 +1,121 @@
+:root{
+    --border-radius:5px;
+    --border-separator:1px solid rgba(0, 0, 0, 0.1);
+    --height: 15px;
+    --animation-duration: 250ms;
+
+    /** Mode variable*/
+    --digit-color: blue;
+    --background-top: yellowgreen;
+    --background-bottom: green;
+}
+
+.light{
+    --digit-color: #de4848;
+    --background-top: #f7f7f7;
+    --background-bottom: white;
+}
+.dark{
+    --digit-color: #f7f7f7;
+    --background-top: #1a1a1a;
+    --background-bottom: black;
+}
+
+.digitBox{
+    display: inline-block;
+    margin: 5px;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.3);
+}
+.digit { 
+    overflow: hidden;
+    position: relative;
+    
+    height: var(--height);
+    width: 50px;
+    
+    text-align: center;
+    line-height: var(--height);
+    font-size: 80px;
+    font-weight: 500;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--digit-color);
+    
+    padding: 20px;
+}
+.top {
+    background: var(--background-top);
+    border-top-right-radius: var(--border-radius);
+    border-top-left-radius: var(--border-radius);
+    border-bottom: var(--border-separator);
+}
+.topDigit {
+    position: relative;
+    bottom: -190%;
+}
+.animatedTop {
+    background: var(--background-top);
+
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-top: 18px;
+    line-height: 1;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+    border-bottom: var(--border-separator);
+    visibility: hidden;
+    
+    animation: flip-down var(--animation-duration) ease-out backwards;
+}
+@keyframes flip-down{
+    0%{
+        visibility: visible;
+    }
+    100%{
+        visibility: visible;
+        transform: rotateX(90deg);
+        top:var(--height);
+    }
+}
+.bottom {
+    background: var(--background-bottom);
+    border-bottom-right-radius: var(--border-radius);
+    border-bottom-left-radius: var(--border-radius);
+}
+.bottomDigit {
+    position: relative;
+    bottom: 180%;
+}
+.animatedBottom {
+    background: var(--background-bottom);
+    
+    position: absolute;
+    z-index: 1;
+    bottom: 0px;
+    left: 0;
+    padding-bottom: 40px;
+    line-height: 1;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+    visibility: hidden;
+    
+    animation: flip-end var(--animation-duration) ease-in calc(var(--animation-duration) - 30ms) backwards;
+}
+@keyframes flip-end{
+    0%{
+        visibility: visible;
+        transform: rotateX(90deg);
+        bottom: calc(var(--height));
+    }
+    100%{
+        visibility: visible;
+        transform: rotateX(0deg);
+    }
+}
